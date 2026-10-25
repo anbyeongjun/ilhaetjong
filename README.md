@@ -27,7 +27,9 @@
 **직접 확인하려면**
 
 <!-- verify:start -->
-첫 릴리스를 올리면 이곳에 확인 명령이 생깁니다.
+```powershell
+Add-Type -AssemblyName System.Windows.Forms; $f = New-Object System.Windows.Forms.OpenFileDialog -Property @{ Title = '받은 일했종 파일을 고르세요'; InitialDirectory = "$env:USERPROFILE\Downloads"; Filter = '실행 파일 (*.exe)|*.exe' }; if ($f.ShowDialog((New-Object System.Windows.Forms.Form -Property @{ TopMost = $true })) -eq 'OK') { if ((Get-FileHash -LiteralPath $f.FileName -Algorithm SHA256).Hash -eq '7A73C934F52E5FB8DF1D78F525C84C8EDE5E7F80420A51C0F02FF4B39BDCCBB9') { Write-Host '공식 파일이 맞습니다.' -ForegroundColor Green } else { Write-Host '공식 파일이 아닙니다. 실행하지 말고 공식 페이지에서 다시 받으세요.' -ForegroundColor Red } }
+```
 <!-- verify:end -->
 
 1. 위 회색 칸 오른쪽 위의 복사 버튼을 누릅니다.
